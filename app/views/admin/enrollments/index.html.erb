@@ -1,0 +1,42 @@
+<%= render '/admin/dashboard/navbar' %>
+<h1>Enrollments</h1>
+<div>
+  <p>
+    <%= link_to "Add Enrollment", new_admin_enrollment_path, class: "btn btn-dark"%>
+  </p>
+</div>
+<table id="enrollment" border="3" layout= "fixed" width=" 100%"  >
+<tr>
+    <th>Student</th>
+    <th>Teacher</th>
+    <th>Course</th>
+    <th>Section</th>
+    <th>Semester</th>
+    <th>Semester No</th>
+    <th>Grade</th>
+    <th>Edit</th>
+    <th>Delete</th>
+  </tr>
+
+  <% @enrollments.each do |e| %>
+    <tr>
+        <td><%= e.student.name %></td>
+        <td><%= e.section.teacher.name%></td>
+        <td><%= e.section.course.name %></td>
+        <td><%= e.section.name%></td>
+        <td><%= e.semester.semester_type %></td>
+        <td><%= e.semester.semester_number%></td>
+        <% if e.grade.letter=="Pending" %>
+          <td><%= link_to e.grade.letter, edit_admin_enrollment_path(e)%></td>
+        <% else %>
+          <td><%= e.grade.letter%></td>
+        <% end%>
+        <td><%= link_to 'Edit', edit_admin_enrollment_path(e), class: "btn btn-dark" %></td>
+        <td><%= link_to "Delete", admin_enrollment_path(e), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  }, class: "btn btn-dark" %></td>
+      </a>
+    </tr>
+  <% end %>
+

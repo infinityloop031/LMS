@@ -1,0 +1,22 @@
+<h1>Profile</h1>
+<p>ID: <%= @student.id %></p>
+<p>Name: <%= @student.name %></p>
+<p>FatherName: <%= @student.father_name %></p>
+<p>Email: <%= @student.email %></h1>
+<p>PhoneNumber: <%= @student.phone_number %></p>
+<p>Date of Birth: <%= @student.dob %></p>
+<p>Batch Number: <%= @student.batch_id %></p>
+<p>Current Semester Type: <%= @student.semesters.last.semester_type%></p>
+<p>Current Semester: <%= @student.semesters.last.semester_number%></p>
+
+
+<ul>
+  <li><%= link_to "Edit", edit_admin_student_path(@student) %></li>
+  <li><%= link_to "Destroy", admin_student_path(@student), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  } %></li>
+  <li>
+    <%= link_to "Back", admin_students_path %>
+  </li>
+</ul>

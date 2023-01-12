@@ -1,0 +1,27 @@
+<h1>Profile</h1>
+<p>ID: <%= @teacher.id %></p>
+<p>Name: <%= @teacher.name %></p>
+<p>Email: <%= @teacher.email %></h1>
+<p>FatherName: <%= @teacher.father_name %></p>
+<p>PhoneNumber: <%= @teacher.phone_number %></p>
+<p>Data of Birth<%= @teacher.dob %></p>
+<tr>
+    <th>Expertise</th>
+</tr>
+<% @teacher.courses.each do |t| %>
+    <tr>
+        <td><%= t.name %>,</td>
+    </tr>
+<% end %>
+
+
+<ul>
+  <li><%= link_to "Edit", edit_admin_teacher_path(@teacher) %></li>
+  <li><%= link_to "Destroy", admin_teacher_path(@teacher), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  } %></li>
+  <li>
+    <%= link_to "Back", admin_teachers_path %>
+  </li>
+</ul>

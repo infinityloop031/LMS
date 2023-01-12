@@ -1,0 +1,27 @@
+<%= form_for [:admin, section] do |f| %>
+    <div class="field">
+        <%= f.label :course %><br />
+        <%= f.select :course_id, options_from_collection_for_select(Course.all, :id, :name),prompt: "Select an option"%>
+    </div>
+
+    <div class="field">
+        <%= f.label :teacher %><br />
+        <%= f.select :teacher_id, options_from_collection_for_select(Teacher.all, :id, :name),prompt: "Select an option"%>
+    </div>
+
+    <div class="field">
+        <%= f.label :semester %><br />
+        <%= f.select :semester_id, options_for_select(Semester.all.map {|item| ["#{item.semester_number} - #{item.semester_type}", item.id]}) %>
+    </div>
+
+    <div class="field">
+        <%= f.label :sectionname %><br />
+        <%= f.text_field :name, autofocus: true %>
+    </div>
+
+    <div class="actions">
+        <%= f.submit "Add" %>
+    </div>
+    <%= link_to "Cancel",admin_sections_path,class: "btn btn-dark" %>
+
+<% end %>

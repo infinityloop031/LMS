@@ -1,0 +1,64 @@
+<%= form_for [:admin, student] do |f| %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name, autofocus: true %>
+  </div>
+
+   <div class="field">
+    <%= f.label :fatherName %><br />
+    <%= f.text_field :father_name, autofocus: true%>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :phonenumber %><br />
+    <%= f.telephone_field :phone_number, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "new-password" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :DOB %><br />
+    <%= f.date_field :dob %>
+  </div>
+
+ <div class="field">
+    <%= f.label :batchnumber %><br />
+    <%= f.select(:batch_id, Batch.all.collect {|x| [x.id,x.batch_number]}, {:include_blank => "Select"}, {:class => "some_class"} )%>
+  </div>
+
+  <div class="field">
+        <%= label_tag :semester %><br />
+        <%= select_tag "semester_id", options_for_select(Semester.all.map {|item| ["#{item.semester_number} - #{item.semester_type}", item.id]}) %>
+    </div>
+
+  <div class="field">
+    <%= label_tag :semester_year %><br />
+    <%=text_field_tag "semester_year" %>
+  </div>
+
+  
+
+
+
+  <div class="actions">
+    <%= f.submit "Add"%>
+  </div>
+  <%= link_to "Cancel",admin_students_path,class: "btn btn-dark" %>
+<% end %>

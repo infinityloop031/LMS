@@ -1,0 +1,29 @@
+<%= render '/admin/dashboard/navbar' %>
+<h1>Courses</h1>
+<div>
+  <p>
+    <%= link_to "Add Course", new_admin_course_path, class: "btn btn-dark"%>
+  </p>
+</div>
+<table id="enrollment" border="3" layout= "fixed" width=" 100%"  >
+<tr>
+    <th>Name</th>
+    <th>CourseCode</th>
+    <th>Edit</th>
+    <th>Delete</th>
+</tr>
+
+
+
+<% @courses.each do |c| %>
+    <tr>
+        <td><%= c.name %></td>
+        <td><%= c.coursecode%></td>
+        <td><%= link_to 'Edit', edit_admin_course_path(c), class: "btn btn-dark" %></td>
+        <td><%= link_to "Delete", admin_course_path(c), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  }, class: "btn btn-dark" %></td>
+      </a>
+    </tr>
+<% end %>

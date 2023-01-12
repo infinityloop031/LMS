@@ -1,0 +1,13 @@
+<h1><%= @course.id %></h1>
+<p><%= @course.name %></p>
+<p><%= @course.coursecode %></h1>
+<ul>
+  <li><%= link_to "Edit", edit_admin_course_path(@course) %></li>
+  <li><%= link_to "Destroy", admin_course_path(@course), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  } %></li>
+  <li>
+    <%= link_to "Back", admin_courses_path %>
+  </li>
+</ul>

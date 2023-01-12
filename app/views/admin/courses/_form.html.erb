@@ -1,0 +1,17 @@
+<%= form_for [:admin, course] do |f| %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name, autofocus: true %>
+  </div>
+
+   <div class="field">
+    <%= f.label :coursecode %><br />
+    <%= f.text_field :coursecode, autofocus: true%>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Add" %>
+  </div>
+  <%= link_to "Cancel",admin_courses_path,class: "btn btn-dark"  %>
+<% end %>
