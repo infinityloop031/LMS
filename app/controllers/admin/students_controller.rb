@@ -30,8 +30,7 @@ class Admin::StudentsController < ApplicationController
     def update
         @student=Student.find(params[:id])
         if @student.update(student_params)
-            semester_id=Semester.where(semester_type:params[:semestertype],semester_number:params[:semester_number].to_i).ids[0]
-            @student.student_semesters.create(semester_id:semester_id,year:[:semester_year])
+            @student.student_semesters.create(semester_id:params[:semester_id].to_i,year:[:semester_year])
             redirect_to admin_students_path
         else
             render :edit, status: :unprocessable_entity

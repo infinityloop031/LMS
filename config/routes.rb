@@ -24,5 +24,8 @@ Rails.application.routes.draw do
   namespace :student do
     root 'dashboard#index'
     resources :dashboard
+    resources :students
+    get 'dashboard/allcourses/:id', to: 'dashboard#display_All_courses'
+    get 'dashboard/transcript/:id', to: 'dashboard#showtranscript', as: :transcript  # defining own prefixes using this!
   end
 end

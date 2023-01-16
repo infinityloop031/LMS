@@ -1,24 +1,28 @@
 <nav class="navbar navbar-expand-lg bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Home</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="navbar-brand" href="<%= student_root_path %>">Home</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="#">Profile</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="#">Courses</a>
+          <a class="nav-link active" href="<%= student_path(current_student.id) %>">Courses</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="#">Transcript</a>
+          <a class="nav-link active " href="<%= student_transcript_path(current_student.id) %>" >Transcript</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="<%= destroy_student_session_path %>">Logout</a>
+          <a class="nav-link active " href="<%= destroy_student_session_path %>" >Logout</a>
         </li>
       </ul>
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
     </div>
   </div>
 </nav>

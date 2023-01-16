@@ -1,0 +1,23 @@
+<%= render '/student/dashboard/navbar' %>
+<h1>Enrolled Courses</h1>
+<table id="enrollment" border="3" layout= "fixed" width=" 100%"  >
+<tr>
+    <th>ID</th>
+    <th>Course</th>
+    <th>Teacher Name</th>
+    <th>Section</th>
+    <th>Semester</th>
+    <th>Semester No</th>
+  </tr>
+
+  <% @enrollments.each do |e| %>
+    <tr>
+        <td><%= e.id %></td>
+        <td><%= e.section.course.name %></td>
+        <td><%= e.section.teacher.name %></td>
+        <td><%= e.section.name%></td>
+        <td><%= e.semester.semester_type %></td>
+        <td><%= e.semester.semester_number%></td>
+    </tr>
+  <% end %>
+
