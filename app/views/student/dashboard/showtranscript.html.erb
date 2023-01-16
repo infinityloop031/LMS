@@ -9,13 +9,20 @@
     <th>Grade</th>
   </tr>
 
-  <% @enrollments.each do |e| %>
-    <tr>
-        <td><%= e.id %></td>
-        <td><%= e.section.course.name %></td>
-        <td><%= e.semester.semester_type %></td>
-        <td><%= e.semester.semester_number%></td>
-        <td><%= e.grade.letter%></td>
-    </tr>
+  <% @semesters.each do |s| %>
+    <% s.enrollments.each do |e|%>
+      <% if e.grade_id!=11 %>
+        <tr>
+          <td><%= e.id %></td>
+          <td><%= e.section.course.name %></td>
+          <td><%= e.semester.semester_type %></td>
+          <td><%= e.semester.semester_number%></td>
+          <td><%= e.grade.letter%></td>
+        </tr>
+      <% end %>
+    <% end %>
   <% end %>
+  
+
+  
 

@@ -5,7 +5,7 @@ class Student::DashboardController < ApplicationController
     end
 
     def showtranscript
-        @enrollments=current_student.semesters[0].enrollments.where.not(grade_id:11)
+        @semesters=current_student.semesters
     end
 
     def display_All_courses
