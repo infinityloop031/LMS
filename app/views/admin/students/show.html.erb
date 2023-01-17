@@ -6,8 +6,8 @@
 <p>PhoneNumber: <%= @student.phone_number %></p>
 <p>Date of Birth: <%= @student.dob %></p>
 <p>Batch Number: <%= @student.batch_id %></p>
-<p>Current Semester Type: <%= @student.semesters.last.semester_type%></p>
-<p>Current Semester: <%= @student.semesters.last.semester_number%></p>
+<p>Current Semester Type: <%= @student.student_semesters.last.semester.semester_type%></p>
+<p>Current Semester: <%= @student.student_semesters.last.semester.semester_number%></p>
 
 
 <ul>

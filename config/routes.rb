@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     resources :students
     get 'dashboard/allcourses/:id', to: 'dashboard#display_All_courses'
     get 'dashboard/transcript/:id', to: 'dashboard#showtranscript', as: :transcript  # defining own prefixes using this!
+    get 'dashboard/showprofile/:id', to: 'dashboard#showprofile', as: :showprofile
   end
 
 
