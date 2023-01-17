@@ -1,0 +1,23 @@
+<%= render 'teacher/dashboard/navbar' %>
+
+<table id="enrollment" border="3" layout= "fixed" width=" 100%"  >
+<tr>
+    <th>ID</th>
+    <th>Course</th>
+    <th>Section</th>
+    <th>Semester No</th>
+    <th>Semester Type</th>
+</tr>
+<% @teacher_sections.each do |s| %>
+    <% s.enrollments.each do |e| %>
+        <% if e.grade_id==11 %>
+        <tr>
+            <td><%= s.id %></td>
+            <td><%= s.course.name %></td>
+            <td><%= s.name %></td>
+            <td><%= s.semester.semester_number %></td>
+            <td><%= s.semester.semester_type %></td>
+        </tr>
+        <% end %>
+    <% end %>
+<% end %>

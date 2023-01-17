@@ -33,6 +33,13 @@ Rails.application.routes.draw do
 
   namespace :teacher do
     root 'dashboard#index'
+    resources :dashboard do
+      collection do
+        get :courses
+        get :showprofile
+        get :pastcourses
+      end
+    end
   end
 
 end
