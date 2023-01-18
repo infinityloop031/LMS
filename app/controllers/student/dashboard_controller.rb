@@ -5,7 +5,6 @@ class Student::DashboardController < ApplicationController
     end
 
     def showprofile
-        @student=current_student.id
     end
 
     def showtranscript

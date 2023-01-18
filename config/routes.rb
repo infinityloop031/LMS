@@ -23,11 +23,17 @@ Rails.application.routes.draw do
 
   namespace :student do
     root 'dashboard#index'
-    resources :dashboard
     resources :students
-    get 'dashboard/allcourses/:id', to: 'dashboard#display_All_courses'
-    get 'dashboard/transcript/:id', to: 'dashboard#showtranscript', as: :transcript  # defining own prefixes using this!
-    get 'dashboard/showprofile/:id', to: 'dashboard#showprofile', as: :showprofile
+    resources :dashboard do
+      collection do
+        get :display_All_courses
+        get :showtranscript
+        get :showprofile
+      end
+    end
+    # get 'dashboard/allcourses/', to: 'dashboard#display_All_courses'
+    # get 'dashboard/transcript/', to: 'dashboard#showtranscript', as: :transcript  # defining own prefixes using this!
+    # get 'dashboard/showprofile/', to: 'dashboard#showprofile', as: :showprofile
   end
 
 
@@ -40,6 +46,7 @@ Rails.application.routes.draw do
         get :pastcourses
       end
     end
+
   end
 
 end
