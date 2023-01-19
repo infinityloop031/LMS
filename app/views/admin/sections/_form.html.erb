@@ -1,4 +1,5 @@
 <%= form_for [:admin, section] do |f| %>
+    <%= render "admin/shared/error", model: section %>
     <div class="field">
         <%= f.label :course %><br />
         <%= f.select :course_id, options_from_collection_for_select(Course.all, :id, :name),prompt: "Select an option"%>

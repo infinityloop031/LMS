@@ -1,5 +1,5 @@
 <%= form_for [:admin, teacher] do |f| %>
-
+  <%= render "admin/shared/error", model: teacher %>
   <div class="field">
     <%= f.label :name %><br />
     <%= f.text_field :name, autofocus: true %>

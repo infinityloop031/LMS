@@ -1,0 +1,27 @@
+<h1>Transcript</h1>
+<table id="enrollment" border="3" layout= "fixed" width=" 100%"  >
+<tr>
+    <th>ID</th>
+    <th>Course</th>
+    <th>Semester</th>
+    <th>Semester No</th>
+    <th>Grade</th>
+  </tr>
+
+  <% @semesters.each do |s| %>
+    <% s.enrollments.where(student_id:current_student.id).each do |e|%>
+      <% if e.grade_id!=11 %>
+        <tr>
+          <td><%= e.id %></td>
+          <td><%= e.section.course.name %></td>
+          <td><%= e.semester.semester_type %></td>
+          <td><%= e.semester.semester_number%></td>
+          <td><%= e.grade.letter%></td>
+        </tr>
+      <% end %>
+    <% end %>
+  <% end %>
+  
+
+  
+

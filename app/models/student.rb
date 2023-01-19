@@ -1,6 +1,13 @@
 class Student < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+
+  validates :name, presence: true
+  validates :father_name, presence: true
+  validates :phone_number, presence: true
+  validates :email, presence: true, uniqueness: true
+  validates :password, length: {minimum: 6}
+
   devise :database_authenticatable,
          :recoverable, :rememberable, :validatable
   
@@ -13,4 +20,8 @@ class Student < ApplicationRecord
 
   has_many :enrollments, dependent: :destroy
 
+
+  private 
+
+ 
 end

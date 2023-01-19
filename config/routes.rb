@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
-  root 'home#index'
+
   namespace :admin do
     root 'dashboard#index'
     resources :students
@@ -24,11 +24,11 @@ Rails.application.routes.draw do
   namespace :student do
     root 'dashboard#index'
     resources :students
-    resources :dashboard do
+    resources :dashboard, only: :index do
       collection do
-        get :display_All_courses
-        get :showtranscript
-        get :showprofile
+        get :display_all_courses
+        get :show_transcript
+        get :show_profile
       end
     end
     # get 'dashboard/allcourses/', to: 'dashboard#display_All_courses'
@@ -36,17 +36,17 @@ Rails.application.routes.draw do
     # get 'dashboard/showprofile/', to: 'dashboard#showprofile', as: :showprofile
   end
 
-
   namespace :teacher do
     root 'dashboard#index'
     resources :dashboard do
       collection do
         get :courses
-        get :showprofile
-        get :pastcourses
+        get :show_profile
+        get :past_courses
       end
     end
-
   end
+
+  root 'home#index'
 
 end

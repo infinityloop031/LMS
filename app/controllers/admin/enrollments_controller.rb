@@ -1,4 +1,4 @@
-class Admin::EnrollmentsController < ApplicationController
+class Admin::EnrollmentsController < Admin::MainController
     
     def index
         @enrollments=Enrollment.all
@@ -13,6 +13,7 @@ class Admin::EnrollmentsController < ApplicationController
         @enrollment=Enrollment.new(enrollment_params)
         @enrollment.semester_id=semester_id
         if @enrollment.save
+            flash[:notice] = "Enrollment was successfully Create."
             redirect_to admin_enrollments_path
         else
             render :new, status: :unprocessable_entity
@@ -28,6 +29,7 @@ class Admin::EnrollmentsController < ApplicationController
         semester_id=Section.find(params[:enrollment][:section_id]).semester_id
         @enrollment.semester_id=semester_id
         if @enrollment.update(enrollment_params)
+            flash[:notice] = "Enrollment was successfully Updated."
             redirect_to admin_enrollments_path
         else
             render :new, status: :unprocessable_entity
@@ -37,6 +39,7 @@ class Admin::EnrollmentsController < ApplicationController
     def destroy
         @enrollment=Enrollment.find(params[:id])
         @enrollment.destroy
+        flash[:notice] = "Enrollment was successfully Delete."
         redirect_to admin_enrollments_path
     end
 

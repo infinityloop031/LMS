@@ -1,5 +1,5 @@
 <%= form_for [:admin, enrollment] do |f| %>
-
+  <%= render "admin/shared/error", model: enrollment %>
 
   <div class="field">
     <%= label_tag :students %><br />

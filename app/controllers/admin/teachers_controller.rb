@@ -1,4 +1,4 @@
-class Admin::TeachersController < ApplicationController
+class Admin::TeachersController < Admin::MainController
     
     def index
         @teachers=Teacher.all
@@ -13,14 +13,12 @@ class Admin::TeachersController < ApplicationController
     end
     def create
         @teacher=Teacher.new(teacher_params)
-
-        # fetching expertise
-        courses=params[:course_ids].map {|x| x.to_i} #converting into the int
         
         # adding data into the expertise join table
-        @teacher.course_ids=courses
+        @teacher.course_ids=params[:course_ids]
         
         if @teacher.save    
+            flash[:notice] = "Teacher was successfully Created."
             redirect_to admin_teachers_path
         else
             render :new, status: :unprocessable_entity
@@ -34,6 +32,7 @@ class Admin::TeachersController < ApplicationController
     def update
         @teacher=Teacher.find(params[:id])  
         if @teacher.update(teacher_params)
+            flash[:notice] = "Teacher was successfully Updated."
             redirect_to admin_teacher_path(@teacher)
         else
             render :edit, status: :unprocessable_entity
@@ -43,6 +42,7 @@ class Admin::TeachersController < ApplicationController
     def destroy
         @teacher=Teacher.find(params[:id])
         @teacher.destroy
+        flash[:notice] = "Teacher was successfully Delete."
         redirect_to admin_teachers_path, status: :see_other
     end
 

@@ -1,5 +1,5 @@
-class Admin::StudentsController < ApplicationController
-    
+class Admin::StudentsController < Admin::MainController
+
     def index
         @students=Student.all
     end
@@ -17,6 +17,7 @@ class Admin::StudentsController < ApplicationController
         
         if @student.save   
             @student.student_semesters.create(semester_id: params[:semester_id].to_i,year: params[:semester_year].to_i)
+            flash[:notice] = "Student was successfully created."
             redirect_to admin_students_path
         else
             render :new, status: :unprocessable_entity
@@ -31,6 +32,7 @@ class Admin::StudentsController < ApplicationController
         @student=Student.find(params[:id])
         if @student.update(student_params)
             @student.student_semesters.create(semester_id:params[:semester_id].to_i,year:params[:semester_year].to_i)
+            flash[:notice] = "Student was successfully Updated."
             redirect_to admin_students_path
         else
             render :edit, status: :unprocessable_entity
@@ -40,6 +42,7 @@ class Admin::StudentsController < ApplicationController
     def destroy
         @student=Student.find(params[:id])
         @student.destroy
+        flash[:notice] = "Student was successfully Delete."
         redirect_to admin_students_path, status: :see_other
     end
 

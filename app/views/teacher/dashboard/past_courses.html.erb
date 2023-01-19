@@ -1,0 +1,20 @@
+<table id="enrollment" border="3" layout= "fixed" width=" 100%"  >
+<tr>
+    <th>ID</th>
+    <th>Course</th>
+    <th>Section</th>
+    <th>Semester No</th>
+    <th>Semester Type</th>
+</tr>
+<% @teacher_sections.each do |s| %>
+    <% s.enrollments.where.not(grade_id:11).each do |e| %>
+        <tr>
+            <td><%= e.section.course.id %></td>
+            <td><%= e.section.course.name %></td>
+            <td><%= e.section.name %></td>
+            <td><%= e.semester.semester_number %></td>
+            <td><%= e.semester.semester_type %></td>
+        </tr>
+       <% break %>
+    <% end %>
+<% end %>
