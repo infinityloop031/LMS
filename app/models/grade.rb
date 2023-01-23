@@ -1,4 +1,4 @@
 class Grade < ApplicationRecord
     has_many :enrollments
-    validate :letter, presence: true
+    validates :letter, presence: true
 end

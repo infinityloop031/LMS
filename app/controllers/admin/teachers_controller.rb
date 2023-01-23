@@ -13,15 +13,19 @@ class Admin::TeachersController < Admin::MainController
     end
     def create
         @teacher=Teacher.new(teacher_params)
-        
-        # adding data into the expertise join table
-        @teacher.course_ids=params[:course_ids]
-        
+        if params[:course_ids]
+            # adding data into the expertise join table
+            @teacher.course_ids=params[:course_ids]
+        else
+            flash[:notice]="Expertise is Missing!"
+            redirect_to new_admin_teacher_path and return
+        end
+
         if @teacher.save    
             flash[:notice] = "Teacher was successfully Created."
             redirect_to admin_teachers_path
         else
-            render :new, status: :unprocessable_entity
+            render :new
         end
     end
 

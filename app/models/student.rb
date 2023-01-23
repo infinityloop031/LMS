@@ -2,6 +2,11 @@ class Student < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
 
+  after_save :create_student_semester
+  after_update :create_student_semester
+
+  attr_accessor :semester_id,:semester_year
+
   validates :name, presence: true
   validates :father_name, presence: true
   validates :phone_number, presence: true
@@ -22,6 +27,10 @@ class Student < ApplicationRecord
 
 
   private 
+
+  def create_student_semester
+    self.student_semesters.create(semester_id: semester_id ,year: semester_year )
+  end
 
  
 end

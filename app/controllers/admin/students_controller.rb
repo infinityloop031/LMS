@@ -14,9 +14,9 @@ class Admin::StudentsController < Admin::MainController
     
     def create
         @student=Student.new(student_params)
-        
+        @student.semester_id=params[:semester_id]
+        @student.semester_year=params[:semester_year]
         if @student.save   
-            @student.student_semesters.create(semester_id: params[:semester_id].to_i,year: params[:semester_year].to_i)
             flash[:notice] = "Student was successfully created."
             redirect_to admin_students_path
         else
@@ -30,8 +30,9 @@ class Admin::StudentsController < Admin::MainController
 
     def update
         @student=Student.find(params[:id])
+        @student.semester_id=params[:semester_id]
+        @student.semester_year=params[:semester_year]
         if @student.update(student_params)
-            @student.student_semesters.create(semester_id:params[:semester_id].to_i,year:params[:semester_year].to_i)
             flash[:notice] = "Student was successfully Updated."
             redirect_to admin_students_path
         else

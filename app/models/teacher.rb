@@ -13,7 +13,7 @@ class Teacher < ApplicationRecord
   devise :database_authenticatable,
          :recoverable, :rememberable, :validatable
 
-  has_many :sections
+  has_many :sections, dependent: :destroy
 
   has_and_belongs_to_many :courses, join_table: "expertises"
 end
