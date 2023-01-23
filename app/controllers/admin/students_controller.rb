@@ -16,7 +16,7 @@ class Admin::StudentsController < Admin::MainController
         @student=Student.new(student_params)
         @student.semester_id=params[:semester_id]
         @student.semester_year=params[:semester_year]
-        if @student.save   
+        if @student.save
             flash[:notice] = "Student was successfully created."
             redirect_to admin_students_path
         else
@@ -30,13 +30,22 @@ class Admin::StudentsController < Admin::MainController
 
     def update
         @student=Student.find(params[:id])
-        @student.semester_id=params[:semester_id]
-        @student.semester_year=params[:semester_year]
-        if @student.update(student_params)
-            flash[:notice] = "Student was successfully Updated."
-            redirect_to admin_students_path
+        if @student.semesters.last.id==params[:semester_id].to_i
+            if @student.update(student_params)
+                flash[:notice] = "Student was successfully Updated."
+                redirect_to admin_students_path
+            else
+                render :edit, status: :unprocessable_entity
+            end
         else
-            render :edit, status: :unprocessable_entity
+            @student.semester_id=params[:semester_id]
+            @student.semester_year=params[:semester_year]
+            if @student.update(student_params)
+                flash[:notice] = "Student was successfully Updated."
+                redirect_to admin_students_path
+            else
+                render :edit, status: :unprocessable_entity
+            end
         end
     end
 
@@ -49,6 +58,6 @@ class Admin::StudentsController < Admin::MainController
 
     private
     def student_params
-        params.require(:student).permit(:name,:father_name,:phone_number,:email,:password,:dob,:batch_id)
+        params.require(:student).permit(:name, :father_name, :phone_number, :email, :password, :dob, :batch_id)
     end
 end

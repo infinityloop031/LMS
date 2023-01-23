@@ -2,8 +2,9 @@ class Student < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
 
-  after_save :create_student_semester
-  after_update :create_student_semester
+  after_save_commit :create_student_semester
+  #after_update_commit :create_student_semester
+  # after_update :create_student_semester
 
   attr_accessor :semester_id,:semester_year
 
@@ -15,7 +16,6 @@ class Student < ApplicationRecord
 
   devise :database_authenticatable,
          :recoverable, :rememberable, :validatable
-  
   # batch relation
   belongs_to :batch
   
@@ -29,7 +29,7 @@ class Student < ApplicationRecord
   private 
 
   def create_student_semester
-    self.student_semesters.create(semester_id: semester_id ,year: semester_year )
+    self.student_semesters.create(semester_id: semester_id ,year: semester_year)
   end
 
  
