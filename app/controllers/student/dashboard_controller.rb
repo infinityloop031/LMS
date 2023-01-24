@@ -6,6 +6,7 @@ class Student::DashboardController < ApplicationController
     end
 
     def show_profile
+        @student=current_student
     end
 
     def show_transcript
@@ -15,4 +16,11 @@ class Student::DashboardController < ApplicationController
     def display_all_courses
         @enrollments=current_student.semesters.where(id:current_student.student_semesters.last.semester_id)[0].enrollments.where(grade_id:11,student_id:current_student.id)
     end
-end
+
+    def upload_image
+        @student=Student.find(current_student.id)
+        if @student.image.attach(params[:image])
+            redirect_to show_profile_student_dashboard_index_path
+        end
+    end
+end 

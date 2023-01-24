@@ -58,6 +58,6 @@ class Admin::StudentsController < Admin::MainController
 
     private
     def student_params
-        params.require(:student).permit(:name, :father_name, :phone_number, :email, :password, :dob, :batch_id)
+        params.require(:student).permit(:name, :father_name, :phone_number, :email, :password, :dob, :batch_id,:image)
     end
 end

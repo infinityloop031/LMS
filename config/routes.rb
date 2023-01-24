@@ -29,6 +29,7 @@ Rails.application.routes.draw do
         get :display_all_courses
         get :show_transcript
         get :show_profile
+        post :upload_image
       end
     end
     # get 'dashboard/allcourses/', to: 'dashboard#display_All_courses'

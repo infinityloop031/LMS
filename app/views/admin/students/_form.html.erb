@@ -1,5 +1,10 @@
 <%= form_for [:admin, student] do |f| %>
   <%= render "admin/shared/error", model: student %>
+
+  <div class="field">
+    <%= f.file_field :image%>
+  </div>
+
   <div class="field">
     <%= f.label :name %><br />
     <%= f.text_field :name, autofocus: true %>

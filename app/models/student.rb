@@ -12,7 +12,7 @@ class Student < ApplicationRecord
   validates :father_name, presence: true
   validates :phone_number, presence: true
   validates :email, presence: true, uniqueness: true
-  validates :password, length: {minimum: 6}
+  validates :password, length: {minimum: 6} , on: :create
 
   devise :database_authenticatable,
          :recoverable, :rememberable, :validatable
@@ -25,6 +25,7 @@ class Student < ApplicationRecord
 
   has_many :enrollments, dependent: :destroy
 
+  has_one_attached :image
 
   private 
 
