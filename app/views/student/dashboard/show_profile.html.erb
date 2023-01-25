@@ -1,5 +1,8 @@
 <h1>Profile</h1>
-<p> <%=image_tag(current_student.image)%> </p>
+
+<% if current_student.image.attached? %>
+  <p> <%=image_tag(current_student.image)%> </p>
+<% end %>
 <p>ID: <%= current_student.id %></p>
 <p>Name: <%= current_student.name %></p>
 <p>FatherName: <%= current_student.father_name %></p>
@@ -11,9 +14,35 @@
 <p>Current Semester: <%= current_student.semesters.last.semester_number%></p>
 <%= form_with url: upload_image_student_dashboard_index_path do |f| %>
   <%= f.file_field :image %>
-
   <%= f.submit "Upload" %>
-
 <% end %>
+
+<%= form_with url: change_password_student_dashboard_index_path do |f| %>
+  <div class="field">
+    <%= f.label :current_password %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :current_password, autocomplete: "new-password" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :new_password %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :new_password, autocomplete: "new-password" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Update Password"%>
+  </div>
+
+<%  end  %>
 
 <%= link_to "Back", student_root_path %>

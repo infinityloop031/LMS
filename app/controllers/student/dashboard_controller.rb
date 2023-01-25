@@ -23,4 +23,14 @@ class Student::DashboardController < ApplicationController
             redirect_to show_profile_student_dashboard_index_path
         end
     end
+
+    def change_password
+        debugger
+        if current_student.valid?(params[:current_password])
+            if current_student.update(password:params[:new_password],password_confirmation: params[:password_confirmation] )
+                flash[:notice] = "Password updated successfully"
+            end
+        end
+    end
+
 end 

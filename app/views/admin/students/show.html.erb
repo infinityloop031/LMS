@@ -1,5 +1,8 @@
 <h1>Profile</h1>
-<%=image_tag(@student.image)%>
+
+<% if @student.image.attached? %>
+  <%= image_tag @student.image.variant(:medium) %>
+<% end %>
 <p>ID: <%= @student.id %></p>
 <p>Name: <%= @student.name %></p>
 <p>FatherName: <%= @student.father_name %></p>

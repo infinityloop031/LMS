@@ -30,6 +30,7 @@ Rails.application.routes.draw do
         get :show_transcript
         get :show_profile
         post :upload_image
+        post :change_password
       end
     end
     # get 'dashboard/allcourses/', to: 'dashboard#display_All_courses'

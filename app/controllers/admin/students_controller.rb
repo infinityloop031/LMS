@@ -14,7 +14,7 @@ class Admin::StudentsController < Admin::MainController
     
     def create
         @student=Student.new(student_params)
-        @student.semester_id=params[:semester_id]
+        @student.semester_id = params[:semester_id]
         @student.semester_year=params[:semester_year]
         if @student.save
             flash[:notice] = "Student was successfully created."
@@ -30,22 +30,13 @@ class Admin::StudentsController < Admin::MainController
 
     def update
         @student=Student.find(params[:id])
-        if @student.semesters.last.id==params[:semester_id].to_i
-            if @student.update(student_params)
-                flash[:notice] = "Student was successfully Updated."
-                redirect_to admin_students_path
-            else
-                render :edit, status: :unprocessable_entity
-            end
+        @student.semester_id = params[:semester_id]
+        @student.semester_year=params[:semester_year]
+        if @student.update(student_params)
+            flash[:notice] = "Student was successfully Updated."
+            redirect_to admin_students_path
         else
-            @student.semester_id=params[:semester_id]
-            @student.semester_year=params[:semester_year]
-            if @student.update(student_params)
-                flash[:notice] = "Student was successfully Updated."
-                redirect_to admin_students_path
-            else
-                render :edit, status: :unprocessable_entity
-            end
+            render :edit, status: :unprocessable_entity
         end
     end
 
