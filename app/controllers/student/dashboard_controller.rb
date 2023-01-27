@@ -25,12 +25,21 @@ class Student::DashboardController < ApplicationController
     end
 
     def change_password
-        debugger
-        if current_student.valid?(params[:current_password])
-            if current_student.update(password:params[:new_password],password_confirmation: params[:password_confirmation] )
-                flash[:notice] = "Password updated successfully"
-            end
+        @user = current_student
+        if @user.update_with_password(password_params)
+            sign_in :student,@user, bypass: true
+            flash[:notice]="Successfully Changed Password!"
+            redirect_to show_profile_student_dashboard_index_path
+        else
+            flash[:notice]="Incorrect Current Password!"
+            redirect_to show_profile_student_dashboard_index_path
         end
+    end
+
+    private
+
+    def password_params
+        params.permit(:current_password,:password,:password_confirmation)
     end
 
 end 

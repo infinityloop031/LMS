@@ -23,15 +23,15 @@
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-    <%= f.password_field :current_password, autocomplete: "new-password" %>
+    <%= f.password_field :current_password, autocomplete: "current-password" %>
   </div>
 
   <div class="field">
-    <%= f.label :new_password %>
+    <%= f.label :password %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-    <%= f.password_field :new_password, autocomplete: "new-password" %>
+    <%= f.password_field :password, autocomplete: "password" %>
   </div>
 
   <div class="field">
