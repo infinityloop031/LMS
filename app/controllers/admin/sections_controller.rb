@@ -2,6 +2,11 @@ class Admin::SectionsController < Admin::MainController
 
     def index
         @sections=Section.all
+        respond_to do |format|
+			format.turbo_stream {
+				render turbo_stream: turbo_stream.update('main', template: 'admin/sections/index')
+			}
+		end
     end
 
     def show

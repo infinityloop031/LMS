@@ -2,6 +2,11 @@ class Admin::StudentsController < Admin::MainController
 
     def index
         @students=Student.all
+        respond_to do |format|
+			format.turbo_stream {
+				render turbo_stream: turbo_stream.update('main', template: 'admin/students/index')
+			}
+		end
     end
     
     def show

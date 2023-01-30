@@ -12,6 +12,7 @@ class Student < ApplicationRecord
   validates :phone_number, presence: true
   validates :email, presence: true, uniqueness: true
   validates :password, length: {minimum: 6} , on: :create
+  validates :image, presence: { message: "must be attached." }
 
   devise :database_authenticatable,
          :recoverable, :rememberable, :validatable

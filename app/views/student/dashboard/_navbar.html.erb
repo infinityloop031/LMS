@@ -23,7 +23,9 @@
       <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>
-        <%= image_tag current_student.image.variant(:small)%>
+        <% if current_student.image.attached? %>
+          <%= image_tag current_student.image.variant(:small)%>
+        <% end %>
       </form>
     </div>
   </div>

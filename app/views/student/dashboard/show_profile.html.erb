@@ -1,8 +1,13 @@
 <h1>Profile</h1>
 
-<% if current_student.image.attached? %>
-  <p> <%=image_tag(current_student.image)%> </p>
+<p id="notice">
+  <%= notice %>
+</p>
+<% if @student.image.attached? %>
+  <%= render "student/dashboard/image", image:current_student.image %>
 <% end %>
+
+<%= Time.now %>
 <p>ID: <%= current_student.id %></p>
 <p>Name: <%= current_student.name %></p>
 <p>FatherName: <%= current_student.father_name %></p>

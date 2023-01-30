@@ -2,6 +2,11 @@ class Admin::EnrollmentsController < Admin::MainController
     
     def index
         @enrollments=Enrollment.all
+        respond_to do |format|
+			format.turbo_stream {
+				render turbo_stream: turbo_stream.update('main', template: 'admin/enrollments/index')
+			}
+		end
     end
 
 

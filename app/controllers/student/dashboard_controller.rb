@@ -20,7 +20,7 @@ class Student::DashboardController < ApplicationController
     def upload_image
         @student=Student.find(current_student.id)
         if @student.image.attach(params[:image])
-            redirect_to show_profile_student_dashboard_index_path
+            update_img
         end
     end
 
@@ -40,6 +40,15 @@ class Student::DashboardController < ApplicationController
 
     def password_params
         params.permit(:current_password,:password,:password_confirmation)
+    end
+
+
+    def update_img
+        render turbo_stream: [turbo_stream.replace("profileimage",
+                                                    partial: "student/dashboard/image",
+                                                    locals:{image: current_student.image}),
+                              turbo_stream.update("notice","Picture is Succesfully Uploaded!")
+                             ]
     end
 
 end 
